@@ -1,23 +1,25 @@
 package com.base.mvvm.data.remote
 
-import com.base.mvvm.domain.entities.requests.LoginRequest
-import com.base.mvvm.domain.entities.requests.RegistrationRequest
-import com.base.mvvm.domain.entities.response.LoginResponse
 import com.base.mvvm.domain.entities.response.RegistrationResponse
+import com.base.mvvm.domain.mappers.UserMapper
+import com.base.mvvm.domain.models.User
+import com.base.mvvm.domain.usecases.user.IUserUsecases
 import io.reactivex.Single
 
-class UserRepository private constructor() : BaseRepository<LoginResponse?>() {
+class UserRepository() : IUserUsecases()  {
+    override val user: Single<User?>?
+        get() = TODO("Not yet implemented")
 
-    fun login(request: LoginRequest?): Single<LoginResponse?>? {
-        return remoteAPI.login(request)
+    override fun login(username: String?, password: String?): Single<Boolean?> {
+        TODO("Not yet implemented")
     }
 
-    fun registration(request: RegistrationRequest?): Single<RegistrationResponse?>? {
-        return remoteAPI.registration(request)
+    override fun registration(email: String?, username: String?, password: String?): Single<RegistrationResponse?>? {
+        TODO("Not yet implemented")
     }
 
     companion object {
-        @kotlin.jvm.JvmStatic
+        @JvmStatic
         var instance: UserRepository? = null
             get() {
                 if (field == null) {
@@ -26,14 +28,6 @@ class UserRepository private constructor() : BaseRepository<LoginResponse?>() {
                 return field
             }
             private set
-    }
-
-    override fun get(): Single<List<LoginResponse?>?>? {
-        return null
-    }
-
-    override fun getById(id: Int): Single<List<LoginResponse?>?>? {
-        return null
     }
 
 }

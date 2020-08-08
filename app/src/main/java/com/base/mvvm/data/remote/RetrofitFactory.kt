@@ -38,8 +38,6 @@ class RetrofitFactory private constructor() {
 
         clientBuilder.addInterceptor(fun(chain: Interceptor.Chain): Response? {
             val request: Request = chain.request().newBuilder()
-                    .addHeader("secretkey", "4df4afd62a9d60b5681e61c8db1dba5b")
-                    .addHeader("appid", "105")
                     .build()
             return chain.proceed(request)
         })

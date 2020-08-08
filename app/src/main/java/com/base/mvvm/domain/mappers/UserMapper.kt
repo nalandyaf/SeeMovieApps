@@ -6,7 +6,7 @@ import com.base.mvvm.domain.models.User
 
 class UserMapper : BaseMapper<UserEntity?, User?>() {
     override fun createObject(): User? {
-        return null
+        return User()
     }
 
     override fun createEntity(): UserEntity? {

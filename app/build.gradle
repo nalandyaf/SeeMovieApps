@@ -26,7 +26,7 @@ android {
             minifyEnabled false
             shrinkResources false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
-            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3\"")
+            buildConfigField("String", "BASE_URL", "\"https://api.themoviedb.org/3/\"")
             buildConfigField("String", "API_KEY", "\"f30eb36c39e6b409c87852810522848e\"")
             buildConfigField("String", "LANGUAGE","\"en-US\"")
         }
@@ -114,6 +114,11 @@ dependencies {
     androidTestAnnotationProcessor "com.google.dagger:dagger-compiler:$rootProject.dagger2Version"
     testImplementation "junit:junit:$rootProject.junitTestVersion"
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
+
+    //lombok
+    // Lombok
+    implementation "org.projectlombok:lombok:$rootProject.lombokVersion"
+    annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
 
 
 }

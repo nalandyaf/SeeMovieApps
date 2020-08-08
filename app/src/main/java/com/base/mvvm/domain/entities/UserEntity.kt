@@ -1,3 +1,3 @@
 package com.base.mvvm.domain.entities
 
-class UserEntity : BaseObjectEntity()
+class UserEntity() : BaseObjectEntity()

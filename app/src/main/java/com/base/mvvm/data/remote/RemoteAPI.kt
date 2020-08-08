@@ -1,5 +1,7 @@
 package com.base.mvvm.data.remote
 
+import com.base.mvvm.domain.entities.BasePaginationEntity
+import com.base.mvvm.domain.entities.MovieEntity
 import com.base.mvvm.domain.entities.requests.LoginRequest
 import com.base.mvvm.domain.entities.requests.RegistrationRequest
 import com.base.mvvm.domain.entities.response.LoginResponse
@@ -23,12 +25,27 @@ interface RemoteAPI {
                     @Query("page") page: Int,
                     @Query("language") language: String)
 
-    @GET("/movie")
-    fun getDetailMovie(@Path("id") movieId: Int,
+    @GET("/movie/{movie_id}")
+    fun getDetailMovie(@Path("movie_id") movieId: Int,
                        @Query("api_key") apiKey: String,
                        @Query("language") language: String)
 
-    
+    @GET("/movie/{movie_id}/videos")
+    fun getVideo(@Path("movie_id") movieId: Int,
+                 @Query("api_key") apiKey: String,
+                 @Query("language") language: String)
+
+    @GET("/movie/{movie_id}/reviews")
+    fun getReviews(@Path("movie_id") movieId: Int,
+                   @Query("api_key") apiKey: String,
+                   @Query("page") page: Int,
+                   @Query("language") language: String)
+
+    @GET("discover/movie")
+    fun getMovies(@Query("api_key") apiKey: String,
+                  @Query("language") language: String,
+                  @Query("sort_by") sortBy: String,
+                  @Query("page") page: Int) : Single<BasePaginationEntity<MovieEntity>>
 
     @GET("/genre/movie/list")
     fun getGenre(@Query("api_key") apiKey: String,
