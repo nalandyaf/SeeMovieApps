@@ -119,9 +119,6 @@ dependencies {
     implementation "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
 
-    implementation 'com.aurelhubert:ahbottomnavigation:2.3.4'
-
-
 }
 repositories {
     mavenCentral()

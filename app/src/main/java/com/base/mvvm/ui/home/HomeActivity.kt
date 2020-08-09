@@ -7,7 +7,6 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.aurelhubert.ahbottomnavigation.AHBottomNavigationAdapter
 import com.base.mvvm.BR
 import com.base.mvvm.R
 import com.base.mvvm.ViewModelProviderFactory
@@ -24,7 +23,6 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     @Inject
     var factory: ViewModelProviderFactory? = null
     var activityHomeBinding: ActivityHomeBinding? = null
-    private var navigationAdapter: AHBottomNavigationAdapter? = null
     var contentTab: ArrayList<ContentTab>? = null
 
     override val bindingVariable: Int
