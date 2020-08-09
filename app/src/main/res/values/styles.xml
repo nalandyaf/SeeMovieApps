@@ -82,19 +82,19 @@
     </style>
 
     <style name="TextAppearance.Text.Regular" parent="android:TextAppearance">
-        <item name="fontPath">fonts/caviardreams/caviardreams.ttf</item>
+        <item name="fontPath">fonts/poppins/Poppins-Regular.ttf</item>
     </style>
 
     <style name="TextAppearance.Text.Italic" parent="android:TextAppearance">
-        <item name="fontPath">fonts/caviardreams/caviardreams_italic.ttf</item>
+        <item name="fontPath">fonts/poppins/Poppins-Italic.ttf</item>
     </style>
 
     <style name="TextAppearance.Text.Bold" parent="android:TextAppearance">
-        <item name="fontPath">fonts/caviardreams/caviardreams_bold.ttf</item>
+        <item name="fontPath">fonts/poppins/Poppins-Bold.ttf</item>
     </style>
 
     <style name="TextAppearance.Text.Bold.Italic" parent="android:TextAppearance">
-        <item name="fontPath">fonts/caviardreams/caviardreams_bold_italic.ttf</item>
+        <item name="fontPath">fonts/poppins/Poppins-Medium.ttf</item>
     </style>
 
     <!--BUTTON STYLE-->
@@ -105,7 +105,7 @@
         <item name="android:layout_marginBottom">@dimen/BU</item>
         <item name="android:textColor">@color/color_black_effective</item>
         <item name="android:textAllCaps">true</item>
-        <item name="fontPath">fonts/caviardreams/caviardreams_bold.ttf</item>
+        <item name="fontPath">fonts/poppins/Poppins-Bold.ttf</item>
         <item name="android:textAppearance">@style/TextAppearance.AppCompat.Medium</item>
         <item name="android:textSize">@dimen/font_size_button</item>
 

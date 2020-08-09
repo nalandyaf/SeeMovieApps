@@ -28,7 +28,7 @@ class AppModule {
     @Singleton
     fun provideCalligraphyDefaultConfig(): CalligraphyConfig {
         return CalligraphyConfig.Builder()
-                .setDefaultFontPath(AndroidUtils.getString(R.string.font_path_caviardreams))
+                .setDefaultFontPath(AndroidUtils.getString(R.string.font_path_poppins))
                 .setFontAttrId(R.attr.fontPath)
                 .build()
     }
