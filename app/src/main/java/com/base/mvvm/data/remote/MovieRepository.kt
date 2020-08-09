@@ -24,6 +24,18 @@ class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
         return remoteAPI.getMovies(BuildConfig.API_KEY, BuildConfig.LANGUAGE, "popularity.desc", page)
     }
 
+    fun getPopularMovie(page:Int): Single<BasePaginationEntity<MovieEntity>>{
+        return remoteAPI.getPopularMovies(BuildConfig.API_KEY,BuildConfig.LANGUAGE,page)
+    }
+
+    fun getTopRatedMovie(page:Int): Single<BasePaginationEntity<MovieEntity>>{
+        return remoteAPI.getTopRatedMovies(BuildConfig.API_KEY,BuildConfig.LANGUAGE,page)
+    }
+
+    fun getUpcomingMovie(page:Int): Single<BasePaginationEntity<MovieEntity>>{
+        return remoteAPI.getUpcoming(BuildConfig.API_KEY,BuildConfig.LANGUAGE,page)
+    }
+
     fun getMovieReview(movieId: Int, page: Int): Single<BaseResponsePagination<MovieReview>> {
         return remoteAPI.getReviews(movieId, BuildConfig.API_KEY, page, BuildConfig.LANGUAGE)
     }
@@ -35,5 +47,6 @@ class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
     fun getVideos(movieId: Int): Single<BaseResponse<MovieVideos>> {
         return remoteAPI.getVideo(movieId, BuildConfig.API_KEY, BuildConfig.LANGUAGE)
     }
+
 
 }

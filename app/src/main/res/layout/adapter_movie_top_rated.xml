@@ -41,6 +41,7 @@
                 android:background="@drawable/back_year"
                 android:paddingLeft="8dp"
                 android:paddingTop="3dp"
+                android:text="@{viewModel.year}"
                 android:paddingRight="8dp"
                 android:paddingBottom="3dp"
                 android:textColor="@android:color/white"
@@ -50,6 +51,7 @@
                 android:id="@+id/title"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.title}"
                 android:layout_marginTop="5dp"
                 android:textColor="@android:color/white" />
 
@@ -76,6 +78,7 @@
                     android:layout_height="wrap_content"
                     android:isIndicator="true"
                     android:numStars="5"
+                    android:rating="@{viewModel.rating}"
                     android:scaleX="0.5"
                     android:scaleY="0.5"
                     android:theme="@style/RatingBar"
@@ -86,6 +89,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:gravity="end"
+                    android:text="@{viewModel.votes}"
                     android:includeFontPadding="false"
                     android:textColor="@android:color/white"
                     android:textSize="8sp" />
@@ -97,6 +101,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:gravity="center"
+                android:text="@{viewModel.voteAverage}"
                 android:includeFontPadding="false"
                 android:textColor="@android:color/white"
                 android:textSize="32sp" />

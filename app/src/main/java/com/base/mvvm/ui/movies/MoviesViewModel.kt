@@ -59,7 +59,7 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
 
     private fun getDataPopular() {
         try {
-            compositeDisposable.add(baseUsecase!!.getTopRatedMovies(1)
+            compositeDisposable.add(baseUsecase!!.getPopularMovies(1)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::onSuccessDataPopular, this::onError))
