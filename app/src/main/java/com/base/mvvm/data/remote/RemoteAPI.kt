@@ -10,6 +10,7 @@ import com.base.mvvm.domain.entities.response.LoginResponse
 import com.base.mvvm.domain.entities.response.RegistrationResponse
 import com.base.mvvm.domain.entities.response.ResponseGenres
 import com.base.mvvm.domain.models.MovieReview
+import com.base.mvvm.domain.models.MovieVideos
 import io.reactivex.Single
 import retrofit2.http.*
 
@@ -32,7 +33,7 @@ interface RemoteAPI {
     @GET("movie/{movie_id}/videos")
     fun getVideo(@Path("movie_id") movieId: Int,
                  @Query("api_key") apiKey: String,
-                 @Query("language") language: String)
+                 @Query("language") language: String) : Single<BaseResponsePagination<MovieVideos>>
 
     @GET("movie/{movie_id}/reviews")
     fun getReviews(@Path("movie_id") movieId: Int,

@@ -4,8 +4,8 @@ import android.text.Editable
 import android.view.View
 import androidx.databinding.ObservableField
 import com.base.mvvm.R
+import com.base.mvvm.domain.entities.response.ResponseReview
 import com.base.mvvm.domain.exceptions.MapperException
-import com.base.mvvm.domain.models.MovieReview
 import com.base.mvvm.domain.usecases.movies.IMoviesUsecases
 import com.base.mvvm.ui.base.BaseViewModel
 import com.base.mvvm.utils.AndroidUtils
@@ -51,7 +51,7 @@ class LoginViewModel(baseUsecase: IMoviesUsecases, schedulerProvider: SchedulerP
         }
     }
 
-    fun onSuccess(responseReview: List<MovieReview>) {
+    fun onSuccess(responseReview: ResponseReview) {
         val movies = responseReview
     }
 

@@ -30,4 +30,6 @@ class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
         return remoteAPI.getGenre(BuildConfig.API_KEY, BuildConfig.LANGUAGE)
     }
 
+//    fun getVideos(): Single<>
+
 }

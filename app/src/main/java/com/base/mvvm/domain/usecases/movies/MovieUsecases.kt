@@ -7,6 +7,7 @@ import com.base.mvvm.domain.entities.MovieEntity
 import com.base.mvvm.domain.entities.response.BaseResponsePagination
 import com.base.mvvm.domain.entities.response.MoviesList
 import com.base.mvvm.domain.entities.response.ResponseGenres
+import com.base.mvvm.domain.entities.response.ResponseReview
 import com.base.mvvm.domain.mappers.MovieMapper
 import com.base.mvvm.domain.models.MovieReview
 import io.reactivex.Single
@@ -18,6 +19,7 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
             val moviesList = MoviesList()
             val movies = mapper.convertToObjectList(responses.results!!)
             moviesList.movies = movies
+            moviesList.page = responses.page
             return@flatMap Single.just(moviesList)
         }
 
@@ -30,9 +32,11 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
         }
     }
 
-    override fun getMovieReview(movieId: Int, page: Int): Single<List<MovieReview>> {
+    override fun getMovieReview(movieId: Int, page: Int): Single<ResponseReview> {
         return repository.getMovieReview(movieId, page).flatMap { responses: BaseResponsePagination<MovieReview> ->
-            val responseReview = responses.results
+            val responseReview = ResponseReview()
+            responseReview.movieReview = responses.results
+            responseReview.totalPages = responses.totalPages
             return@flatMap Single.just(responseReview)
         }
     }

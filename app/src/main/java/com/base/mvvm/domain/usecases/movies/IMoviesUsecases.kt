@@ -6,7 +6,6 @@ import com.base.mvvm.domain.entities.response.MoviesList
 import com.base.mvvm.domain.entities.response.ResponseReview
 import com.base.mvvm.domain.exceptions.MapperException
 import com.base.mvvm.domain.mappers.MovieMapper
-import com.base.mvvm.domain.models.MovieReview
 import com.base.mvvm.domain.usecases.base.BaseUsecase
 import io.reactivex.Single
 
@@ -19,5 +18,6 @@ abstract class IMoviesUsecases(mapper: MovieMapper, movieRepository: MovieReposi
     abstract fun getGenres(): Single<List<Genre>>
 
     @Throws(MapperException::class)
-    abstract fun getMovieReview(movieId: Int, page: Int): Single<List<MovieReview>>
+    abstract fun getMovieReview(movieId: Int, page: Int): Single<ResponseReview>
+
 }
