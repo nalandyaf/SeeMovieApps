@@ -45,7 +45,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(), M
         val snapHelper = GravitySnapHelper(Gravity.START)
         snapHelper.attachToRecyclerView(mBinding!!.topRatedList)
         snapHelper.attachToRecyclerView(mBinding!!.upcomingList)
-        showShimmer()
 
     }
 
@@ -56,9 +55,6 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(), M
     }
 
     override fun hideShimmer() {
-        mBinding!!.popularMovieList.hideShimmerAdapter()
-        mBinding!!.topRatedList.hideShimmerAdapter()
-        mBinding!!.upcomingList.hideShimmerAdapter()
         dismissLoading()
     }
 

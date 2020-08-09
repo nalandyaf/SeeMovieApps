@@ -70,29 +70,26 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
     }
 
     fun onSuccessDataupComing(moviesList: MoviesList) {
-        adaperUpcoming!!.addItems(moviesList.movies as List<Movies>)
+        adaperUpcoming.addItems(moviesList.movies as List<Movies>)
         navigator!!.hideShimmer()
-        isLoading(false)
     }
 
     fun onSuccessDataTopRated(moviesList: MoviesList) {
-        adapterTopRated!!.addItems(moviesList.movies as List<Movies>)
-        navigator!!.hideShimmer()
+        adapterTopRated.addItems(moviesList.movies as List<Movies>)
     }
 
     fun onSuccessDataPopular(moviesList: MoviesList) {
-        adapterPopular!!.addItems(moviesList.movies as List<Movies>)
-        navigator!!.hideShimmer()
+        adapterPopular.addItems(moviesList.movies as List<Movies>)
     }
 
     fun getAdapterUpcoming(): AdapterUpcoming {
         adaperUpcoming = AdapterUpcoming(ArrayList(), ::toDetailMovie)
-        return adaperUpcoming!!
+        return adaperUpcoming
     }
 
     fun getAdapterTopRated(): AdapterTopRated {
         adapterTopRated = AdapterTopRated(ArrayList(),::toDetailMovie)
-        return adapterTopRated!!
+        return adapterTopRated
     }
 
     fun getAdapterPopular(): AdapterPopular {
