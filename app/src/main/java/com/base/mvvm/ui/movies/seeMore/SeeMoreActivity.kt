@@ -28,6 +28,7 @@ class SeeMoreActivity : BaseActivity<ActivitySeeMoreBinding, SeeMoreViewModel>()
         super.onCreate(savedInstanceState)
         viewModel.setNavigator(this)
         mBinding = viewDataBinding
+        mBinding!!.activity = this
         mBinding!!.list.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
             override fun onLoadMore() {
                 viewModel.onLoadMore(intent!!.getIntExtra("data",1))

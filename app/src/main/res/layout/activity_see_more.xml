@@ -8,6 +8,10 @@
         <import type="com.base.mvvm.ui.base.BaseViewModel" />
 
         <variable
+            name="activity"
+            type="androidx.appcompat.app.AppCompatActivity" />
+
+        <variable
             name="viewModel"
             type="com.base.mvvm.ui.movies.seeMore.SeeMoreViewModel" />
     </data>
@@ -32,7 +36,7 @@
             android:layout_height="?attr/actionBarSize"
             android:layout_marginStart="-5dp"
             android:background="?android:attr/selectableItemBackground"
-            android:onClick="backActivity"
+            android:onClick="@{() -> activity.onBackPressed()}"
             android:padding="15dp"
             android:scaleType="fitXY"
             android:src="@drawable/left_arrow"
