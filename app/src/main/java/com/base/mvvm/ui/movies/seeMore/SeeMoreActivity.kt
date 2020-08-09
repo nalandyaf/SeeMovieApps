@@ -1,5 +1,6 @@
 package com.base.mvvm.ui.movies.seeMore
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.lifecycle.ViewModelProvider
 import com.base.mvvm.BR
@@ -8,6 +9,7 @@ import com.base.mvvm.ViewModelProviderFactory
 import com.base.mvvm.databinding.ActivitySeeMoreBinding
 import com.base.mvvm.ui.EndlessRecyclerOnScrollListener
 import com.base.mvvm.ui.base.BaseActivity
+import com.base.mvvm.ui.movies.detailMovie.DetailMovieActivity
 import javax.inject.Inject
 
 class SeeMoreActivity : BaseActivity<ActivitySeeMoreBinding, SeeMoreViewModel>(), SeeMoreNavigator {
@@ -31,15 +33,21 @@ class SeeMoreActivity : BaseActivity<ActivitySeeMoreBinding, SeeMoreViewModel>()
         mBinding!!.activity = this
         mBinding!!.list.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
             override fun onLoadMore() {
-                viewModel.onLoadMore(intent!!.getIntExtra("data",1))
+                viewModel.onLoadMore(intent!!.getIntExtra("data", 1))
             }
         })
         createLoading()
-        viewModel.fetchData(intent!!.getIntExtra("data",1))
+        viewModel.fetchData(intent!!.getIntExtra("data", 1))
     }
 
     override fun hideLoad() {
         dismissLoading()
+    }
+
+    override fun toDetail(id: Int?) {
+        val intent = Intent(this, DetailMovieActivity::class.java)
+        intent.putExtra("id", id)
+        startActivity(intent)
     }
 
     override fun handleError(throwable: Throwable?) {

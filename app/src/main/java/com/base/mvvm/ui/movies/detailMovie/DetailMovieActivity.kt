@@ -8,6 +8,7 @@ import com.base.mvvm.BR
 import com.base.mvvm.R
 import com.base.mvvm.ViewModelProviderFactory
 import com.base.mvvm.databinding.ActivityDetailMovieBinding
+import com.base.mvvm.ui.EndlessRecyclerOnScrollListener
 import com.base.mvvm.ui.base.BaseActivity
 import com.pierfrancescosoffritti.youtubeplayer.player.AbstractYouTubePlayerListener
 import com.pierfrancescosoffritti.youtubeplayer.player.YouTubePlayerFullScreenListener
@@ -32,6 +33,11 @@ class DetailMovieActivity : BaseActivity<ActivityDetailMovieBinding, DetailMovie
         super.onCreate(savedInstanceState)
         mBinding = viewDataBinding
         mBinding!!.acivity = this
+        mBinding!!.list.addOnScrollListener(object : EndlessRecyclerOnScrollListener() {
+            override fun onLoadMore() {
+                viewModel.onLoadMore(intent!!.getIntExtra("data", 1))
+            }
+        })
         viewModel.setNavigator(this)
         createLoading()
         viewModel.fetchData(intent.getIntExtra("id", 1));

@@ -7,6 +7,7 @@ import com.base.mvvm.domain.exceptions.MapperException
 import com.base.mvvm.domain.models.DetailMovies
 import com.base.mvvm.domain.usecases.movies.IDetailMovieUsecases
 import com.base.mvvm.ui.base.BaseViewModel
+import com.base.mvvm.ui.movies.detailMovie.adapter.AdapterReview
 import com.base.mvvm.ui.movies.detailMovie.adapter.AdapterTrailer
 import com.base.mvvm.utils.SchedulerProvider
 import io.reactivex.android.schedulers.AndroidSchedulers
@@ -23,8 +24,12 @@ class DetailMovieViewModel(baseUsecases: IDetailMovieUsecases, schedulerProvider
     var overView = ObservableField<String>()
 
     private var page: Int? = 1
+    private var totalPages: Int? = 0
+
 
     private lateinit var adapterTrailer: AdapterTrailer
+
+    private lateinit var adapterReview: AdapterReview
 
     override fun defineLayout() {
 
@@ -90,7 +95,8 @@ class DetailMovieViewModel(baseUsecases: IDetailMovieUsecases, schedulerProvider
     }
 
     fun onSuccessGetDataReviews(responseReview: ResponseReview) {
-
+        adapterReview.addItems(responseReview.movieReview!!)
+        totalPages = responseReview.totalPages
     }
 
     fun getAdapterTrailer(): AdapterTrailer {
@@ -98,7 +104,19 @@ class DetailMovieViewModel(baseUsecases: IDetailMovieUsecases, schedulerProvider
         return adapterTrailer
     }
 
+    fun getAdapterReview(): AdapterReview {
+        adapterReview = AdapterReview(ArrayList())
+        return adapterReview
+    }
+
     fun selectedTrailer(key: String) {
         navigator?.setupPlayer(key)
+    }
+
+    fun onLoadMore(idMovie: Int) {
+        if (page!! < totalPages!!.minus(1)) {
+            page = page!!.plus(1)
+            getDataReview(idMovie)
+        }
     }
 }

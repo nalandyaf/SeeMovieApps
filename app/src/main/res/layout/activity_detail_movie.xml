@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -71,8 +72,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="5dp"
                         android:orientation="horizontal"
-                        app:setAdapter="@{viewModel.getAdapterTrailer()}"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:setAdapter="@{viewModel.getAdapterTrailer()}" />
 
                     <LinearLayout
                         android:layout_width="match_parent"
@@ -170,7 +171,9 @@
                         android:layout_marginTop="5dp"
                         android:layout_marginBottom="@dimen/margin_med"
                         android:orientation="horizontal"
-                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:setAdapter="@{viewModel.getAdapterReview()}"
+                        tools:listitem="@layout/adapter_reviews" />
 
                 </LinearLayout>
             </FrameLayout>

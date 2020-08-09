@@ -81,8 +81,12 @@ class SeeMoreViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedu
     }
 
     fun getAdapter(): SeeMoreAdapter {
-        adapterSeeMoreAdapter = SeeMoreAdapter(ArrayList())
+        adapterSeeMoreAdapter = SeeMoreAdapter(ArrayList(), ::toDetailMovie)
         return adapterSeeMoreAdapter
+    }
+
+    fun toDetailMovie(movies: Movies) {
+        navigator?.toDetail(movies.id)
     }
 
 }
