@@ -4,6 +4,8 @@ import android.app.Activity
 import android.app.Application
 import android.content.Context
 import androidx.fragment.app.Fragment
+import androidx.multidex.MultiDex
+import androidx.multidex.MultiDexApplication
 import com.base.mvvm.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
@@ -14,7 +16,7 @@ import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class App : Application(), HasActivityInjector,HasSupportFragmentInjector {
+class App : MultiDexApplication(), HasActivityInjector,HasSupportFragmentInjector {
     @kotlin.jvm.JvmField
     @Inject
     var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
@@ -32,6 +34,7 @@ class App : Application(), HasActivityInjector,HasSupportFragmentInjector {
 
     override fun onCreate() {
         super.onCreate()
+        MultiDex.install(this)
         instance = this
         appContext = applicationContext
         DaggerAppComponent.builder()

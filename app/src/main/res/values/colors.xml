@@ -15,6 +15,7 @@
     <color name="color_transparent">#002A2A2A</color>
     <color name="color_home">#1e1735</color>
     <color name="color_tab">#150e2a</color>
+    <color name="transDeepColorAccent">#ee150e2a</color>
 
     <color name="mtrl_textinput_default_box_stroke_color" tools:override="true">@color/color_white</color>
     <color name="darkGreyer">#5b5b5c</color>
