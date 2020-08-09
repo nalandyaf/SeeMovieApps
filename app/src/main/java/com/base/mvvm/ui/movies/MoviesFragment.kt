@@ -10,6 +10,7 @@ import com.base.mvvm.R
 import com.base.mvvm.ViewModelProviderFactory
 import com.base.mvvm.databinding.FragmentMoviesBinding
 import com.base.mvvm.ui.base.BaseFragment
+import com.base.mvvm.ui.movies.detailMovie.DetailMovieActivity
 import com.base.mvvm.ui.movies.seeMore.SeeMoreActivity
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import javax.inject.Inject
@@ -76,6 +77,12 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(), M
     override fun seeMoreUpcoming() {
         val intent = Intent(context, SeeMoreActivity::class.java)
         intent.putExtra("data", SeeMoreActivity.TYPE_UPCOMING)
+        context?.startActivity(intent)
+    }
+
+    override fun toDetail(id: Int?) {
+        val intent = Intent(context, DetailMovieActivity::class.java)
+        intent.putExtra("id", id)
         context?.startActivity(intent)
     }
 

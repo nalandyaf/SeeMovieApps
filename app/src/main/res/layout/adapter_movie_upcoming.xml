@@ -15,7 +15,8 @@
     <FrameLayout
         android:layout_width="150dp"
         android:layout_height="200dp"
-        android:layout_marginStart="10dp">
+        android:layout_marginStart="10dp"
+        android:onClick="@{() -> viewModel.toDetail()}">
 
         <ImageView
             android:id="@+id/image"
@@ -40,9 +41,9 @@
 
             <TextView
                 android:id="@+id/date"
-                android:text="@{viewModel.releaseDate}"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:text="@{viewModel.releaseDate}"
                 android:textColor="@android:color/white"
                 android:textSize="10sp" />
 

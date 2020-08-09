@@ -86,17 +86,17 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
     }
 
     fun getAdapterUpcoming(): AdapterUpcoming {
-        adaperUpcoming = AdapterUpcoming(ArrayList())
+        adaperUpcoming = AdapterUpcoming(ArrayList(), ::toDetailMovie)
         return adaperUpcoming!!
     }
 
     fun getAdapterTopRated(): AdapterTopRated {
-        adapterTopRated = AdapterTopRated(ArrayList())
+        adapterTopRated = AdapterTopRated(ArrayList(),::toDetailMovie)
         return adapterTopRated!!
     }
 
     fun getAdapterPopular(): AdapterPopular {
-        adapterPopular = AdapterPopular(ArrayList())
+        adapterPopular = AdapterPopular(ArrayList(),::toDetailMovie)
         return adapterPopular
     }
 
@@ -110,6 +110,10 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
 
     fun seeMoreUpcoming(){
         navigator?.seeMoreUpcoming()
+    }
+
+    fun toDetailMovie(movies: Movies){
+        navigator?.toDetail(movies.id)
     }
 
 

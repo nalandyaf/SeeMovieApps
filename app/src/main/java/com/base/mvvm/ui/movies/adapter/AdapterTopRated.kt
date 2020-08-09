@@ -7,8 +7,12 @@ import com.base.mvvm.databinding.AdapterMovieTopRatedBinding
 import com.base.mvvm.domain.models.Movies
 import com.base.mvvm.ui.base.BaseAdapter
 
-class AdapterTopRated(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
+class AdapterTopRated(data: ArrayList<Movies>, action: (Movies) -> Unit) : BaseAdapter<Movies>(data) {
+
     private lateinit var binding: AdapterMovieTopRatedBinding
+
+    private val action: (Movies) -> Unit = action
+
     override fun createHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         binding = AdapterMovieTopRatedBinding.inflate(LayoutInflater.from(parent.context)
                 , parent, false)
@@ -17,6 +21,6 @@ class AdapterTopRated(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
 
     override fun bindingViewHolder(holder: GenericViewHolder, position: Int) {
         (holder.viewDataBinding as AdapterMovieTopRatedBinding).viewModel =
-                TopRatedItemViewModel(getItem(position), binding)
+                TopRatedItemViewModel(getItem(position), action, binding)
     }
 }

@@ -6,7 +6,9 @@ import com.base.mvvm.domain.models.Movies
 import com.squareup.picasso.Picasso
 import java.util.*
 
-class TopRatedItemViewModel(itemData: Movies?, var binding: AdapterMovieTopRatedBinding) : Observable() {
+class TopRatedItemViewModel(itemData: Movies?,
+                            var actionDetail: (Movies) -> Unit,
+                            var binding: AdapterMovieTopRatedBinding) : Observable() {
 
     var year = ObservableField<String>()
     var title = ObservableField<String>()
@@ -25,5 +27,12 @@ class TopRatedItemViewModel(itemData: Movies?, var binding: AdapterMovieTopRated
         voteAverage.set(data?.voteAverage.toString())
         Picasso.get().load("https://image.tmdb.org/t/p/w500" + data?.backdropPath).into(binding!!.image)
 
+    }
+
+    fun toDetail(){
+        with(binding){
+            executePendingBindings()
+        }
+        actionDetail(data!!)
     }
 }

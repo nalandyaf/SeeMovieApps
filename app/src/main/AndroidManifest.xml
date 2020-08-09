@@ -22,6 +22,7 @@
         </activity>
         <activity android:name="com.base.mvvm.ui.registration.RegistrationActivity" />
         <activity android:name=".ui.movies.seeMore.SeeMoreActivity" />
+        <activity android:name=".ui.movies.detailMovie.DetailMovieActivity"/>
     </application>
 
 </manifest>

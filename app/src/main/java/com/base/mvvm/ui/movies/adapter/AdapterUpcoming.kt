@@ -7,9 +7,11 @@ import com.base.mvvm.databinding.AdapterMovieUpcomingBinding
 import com.base.mvvm.domain.models.Movies
 import com.base.mvvm.ui.base.BaseAdapter
 
-class AdapterUpcoming(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
+class AdapterUpcoming(data: ArrayList<Movies>, action: (Movies) -> Unit) : BaseAdapter<Movies>(data) {
 
     private lateinit var binding: AdapterMovieUpcomingBinding
+
+    private val action: (Movies) -> Unit = action
 
     override fun createHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         binding = AdapterMovieUpcomingBinding.inflate(LayoutInflater.from(parent.context)
@@ -19,6 +21,6 @@ class AdapterUpcoming(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
 
     override fun bindingViewHolder(holder: GenericViewHolder, position: Int) {
         (holder.viewDataBinding as AdapterMovieUpcomingBinding).viewModel =
-                UpcomingItemViewModel(getItem(position), binding)
+                UpcomingItemViewModel(getItem(position),action, binding)
     }
 }

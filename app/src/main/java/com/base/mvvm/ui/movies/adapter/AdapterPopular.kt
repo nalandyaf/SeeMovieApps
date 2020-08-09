@@ -7,8 +7,10 @@ import com.base.mvvm.databinding.AdapterMoviePopularBinding
 import com.base.mvvm.domain.models.Movies
 import com.base.mvvm.ui.base.BaseAdapter
 
-class AdapterPopular(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
+class AdapterPopular(data: ArrayList<Movies>, action: (Movies) -> Unit) : BaseAdapter<Movies>(data) {
     private lateinit var binding: AdapterMoviePopularBinding
+
+    private val action: (Movies) -> Unit = action
 
     override fun createHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
         binding = AdapterMoviePopularBinding.inflate(LayoutInflater.from(parent.context)
@@ -18,6 +20,6 @@ class AdapterPopular(data: ArrayList<Movies>) : BaseAdapter<Movies>(data) {
 
     override fun bindingViewHolder(holder: GenericViewHolder, position: Int) {
         (holder.viewDataBinding as AdapterMoviePopularBinding).viewModel =
-                PopularItemViewModel(getItem(position), binding)
+                PopularItemViewModel(getItem(position),action, binding)
     }
 }

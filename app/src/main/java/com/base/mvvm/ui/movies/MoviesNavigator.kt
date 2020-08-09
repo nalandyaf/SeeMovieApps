@@ -7,4 +7,5 @@ interface MoviesNavigator : BaseNavigator {
     fun seeMorePopular()
     fun seeMoreTopRated()
     fun seeMoreUpcoming()
+    fun toDetail(id: Int?)
 }
