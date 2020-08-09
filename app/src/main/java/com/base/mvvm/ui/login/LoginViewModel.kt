@@ -4,8 +4,8 @@ import android.text.Editable
 import android.view.View
 import androidx.databinding.ObservableField
 import com.base.mvvm.R
-import com.base.mvvm.domain.entities.Genre
 import com.base.mvvm.domain.exceptions.MapperException
+import com.base.mvvm.domain.models.MovieReview
 import com.base.mvvm.domain.usecases.movies.IMoviesUsecases
 import com.base.mvvm.ui.base.BaseViewModel
 import com.base.mvvm.utils.AndroidUtils
@@ -41,7 +41,7 @@ class LoginViewModel(baseUsecase: IMoviesUsecases, schedulerProvider: SchedulerP
     fun login() {
         isLoading(true)
         try {
-            compositeDisposable.add(baseUsecase!!.getGenres()
+            compositeDisposable.add(baseUsecase!!.getMovieReview(516486, 1)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(this::onSuccess, this::onError))
@@ -51,8 +51,8 @@ class LoginViewModel(baseUsecase: IMoviesUsecases, schedulerProvider: SchedulerP
         }
     }
 
-    fun onSuccess(genres: List<Genre>) {
-        val genres = genres
+    fun onSuccess(responseReview: List<MovieReview>) {
+        val movies = responseReview
     }
 
 

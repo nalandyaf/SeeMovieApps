@@ -1,6 +1,6 @@
 package com.base.mvvm.domain.models
 
-class Movies(
+data class Movies(
         var title: String? = null,
         var backdropPath: String? = null,
         var releaseDate: String? = null,
