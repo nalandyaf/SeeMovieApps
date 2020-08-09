@@ -16,6 +16,15 @@ abstract class IMoviesUsecases(mapper: MovieMapper, movieRepository: MovieReposi
     abstract fun getDiscoverMovies(page: Int): Single<MoviesList>
 
     @Throws(MapperException::class)
+    abstract fun getPopularMovies(page: Int): Single<MoviesList>
+
+    @Throws(MapperException::class)
+    abstract fun getTopRatedMovies(page: Int): Single<MoviesList>
+
+    @Throws(MapperException::class)
+    abstract fun getUpcomingMovies(page: Int): Single<MoviesList>
+
+    @Throws(MapperException::class)
     abstract fun getGenres(): Single<List<Genre>>
 
     @Throws(MapperException::class)

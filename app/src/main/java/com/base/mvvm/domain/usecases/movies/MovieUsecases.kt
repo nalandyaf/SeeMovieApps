@@ -23,6 +23,36 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
 
     }
 
+    override fun getPopularMovies(page: Int): Single<MoviesList> {
+        return repository.getMovie(page).flatMap { responses: BasePaginationEntity<MovieEntity> ->
+            val moviesList = MoviesList()
+            val movies = mapper.convertToObjectList(responses.results!!)
+            moviesList.movies = movies
+            moviesList.page = responses.totalPages
+            return@flatMap Single.just(moviesList)
+        }
+    }
+
+    override fun getTopRatedMovies(page: Int): Single<MoviesList> {
+        return repository.getMovie(page).flatMap { responses: BasePaginationEntity<MovieEntity> ->
+            val moviesList = MoviesList()
+            val movies = mapper.convertToObjectList(responses.results!!)
+            moviesList.movies = movies
+            moviesList.page = responses.totalPages
+            return@flatMap Single.just(moviesList)
+        }
+    }
+
+    override fun getUpcomingMovies(page: Int): Single<MoviesList> {
+        return repository.getMovie(page).flatMap { responses: BasePaginationEntity<MovieEntity> ->
+            val moviesList = MoviesList()
+            val movies = mapper.convertToObjectList(responses.results!!)
+            moviesList.movies = movies
+            moviesList.page = responses.totalPages
+            return@flatMap Single.just(moviesList)
+        }
+    }
+
     override fun getGenres(): Single<List<Genre>> {
         return repository.getGenres().flatMap { response: ResponseGenres ->
             val genreList = response.genres
@@ -46,4 +76,5 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
             return@flatMap Single.just(responseVideo)
         }
     }
+
 }
