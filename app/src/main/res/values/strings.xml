@@ -25,6 +25,8 @@
     <string name="font_path_grotesk">fonts/grotesk/Tele-GroteskNor.ttf</string>
     <string name="font_path_caviardreams">fonts/caviardreams/caviardreams.ttf</string>
     <string name="location_tour_list_page_app_bar_title">Location</string>
+    <string name="movies">Movies</string>
+    <string name="genre">Genre</string>
 
 
 </resources>

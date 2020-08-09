@@ -3,16 +3,18 @@ package com.base.mvvm
 import android.app.Activity
 import android.app.Application
 import android.content.Context
+import androidx.fragment.app.Fragment
 import com.base.mvvm.di.component.DaggerAppComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
+import dagger.android.support.HasSupportFragmentInjector
 import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import javax.inject.Inject
 import javax.inject.Singleton
 
 @Singleton
-class App : Application(), HasActivityInjector {
+class App : Application(), HasActivityInjector,HasSupportFragmentInjector {
     @kotlin.jvm.JvmField
     @Inject
     var activityDispatchingAndroidInjector: DispatchingAndroidInjector<Activity>? = null
@@ -23,6 +25,10 @@ class App : Application(), HasActivityInjector {
     override fun activityInjector(): AndroidInjector<Activity> {
         return activityDispatchingAndroidInjector!!
     }
+
+    @JvmField
+    @Inject
+    var mFragmentInjector: DispatchingAndroidInjector<Fragment>? = null
 
     override fun onCreate() {
         super.onCreate()
@@ -41,5 +47,9 @@ class App : Application(), HasActivityInjector {
         var instance: App? = null
             private set
 
+    }
+
+    override fun supportFragmentInjector(): AndroidInjector<Fragment> {
+        return mFragmentInjector!!
     }
 }

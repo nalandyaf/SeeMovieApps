@@ -13,7 +13,7 @@
         android:theme="@style/AppTheme"
         android:name="com.base.mvvm.App">
 
-        <activity android:name="com.base.mvvm.ui.login.LoginActivity">
+        <activity android:name="com.base.mvvm.ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 

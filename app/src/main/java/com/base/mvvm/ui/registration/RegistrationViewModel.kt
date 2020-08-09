@@ -17,11 +17,8 @@ class RegistrationViewModel(baseUsecase: IUserUsecases, schedulerProvider: Sched
     var username = ObservableField<String>()
     var email = ObservableField<String>()
     var password = ObservableField<String>()
-    override fun onPositiveButtonClick(view: View?) {
-        registration()
-    }
 
-    override fun onNegativeButtonClick(view: View?) {}
+
     override fun defineLayout() {
         positiveButton.set(AndroidUtils.getString(R.string.registration_page_positive_button))
     }

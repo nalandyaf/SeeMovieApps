@@ -16,7 +16,6 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="@{viewModel.positiveButton}"
-        android:onClick="@{viewModel::onPositiveButtonClick}"
         app:cornerRadius="@dimen/BUOneThird"
         app:backgroundTint="@color/colorAccent"
         style="@style/ActionButton"

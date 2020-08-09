@@ -20,11 +20,6 @@ class LoginViewModel(baseUsecase: IMoviesUsecases, schedulerProvider: SchedulerP
     @kotlin.jvm.JvmField
     var password = ObservableField<String>()
 
-    override fun onPositiveButtonClick(view: View?) {
-        login()
-    }
-
-    override fun onNegativeButtonClick(view: View?) {}
     override fun defineLayout() {
         positiveButton.set(AndroidUtils.getString(R.string.login_page_positive_button))
         appBarTitle.set(AndroidUtils.getString(R.string.login_page_app_bar_title))

@@ -14,7 +14,9 @@ import com.base.mvvm.domain.usecases.movies.IMoviesUsecases
 import com.base.mvvm.domain.usecases.movies.MovieUsecases
 import com.base.mvvm.domain.usecases.user.IUserUsecases
 import com.base.mvvm.domain.usecases.user.UserUsecases
+import com.base.mvvm.ui.home.HomeViewModel
 import com.base.mvvm.ui.login.LoginViewModel
+import com.base.mvvm.ui.movies.MoviesViewModel
 import com.base.mvvm.ui.registration.RegistrationViewModel
 import com.base.mvvm.utils.SchedulerProvider
 import javax.inject.Inject
@@ -25,13 +27,24 @@ class ViewModelProviderFactory @Inject constructor(private val schedulerProvider
     private val userUsecases: IUserUsecases
     private val moviesUsecases: IMoviesUsecases
     private val detailMovieUsecases: IDetailMovieUsecases
+
+    @Suppress("UNCHECKED_CAST")
     override fun <T : ViewModel?> create(modelClass: Class<T>): T {
-        if (modelClass.isAssignableFrom(LoginViewModel::class.java)) {
-            return LoginViewModel(moviesUsecases, schedulerProvider) as T
-        } else if (modelClass.isAssignableFrom(RegistrationViewModel::class.java)) {
-            return RegistrationViewModel(userUsecases, schedulerProvider) as T
+        when {
+            modelClass.isAssignableFrom(LoginViewModel::class.java) -> {
+                return LoginViewModel(moviesUsecases, schedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(RegistrationViewModel::class.java) -> {
+                return RegistrationViewModel(userUsecases, schedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(HomeViewModel::class.java) -> {
+                return HomeViewModel(null, schedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(MoviesViewModel::class.java) -> {
+                return MoviesViewModel(null, schedulerProvider) as T
+            }
+            else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
-        throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
     }
 
     init {

@@ -55,8 +55,7 @@ abstract class BaseViewModel<U, N : BaseNavigator?>(baseUsecase: U, schedulerPro
     }
 
     protected fun onSuccess(o: Any?) {}
-    abstract fun onPositiveButtonClick(view: View?)
-    abstract fun onNegativeButtonClick(view: View?)
+
 
     init {
         compositeDisposable = CompositeDisposable()
