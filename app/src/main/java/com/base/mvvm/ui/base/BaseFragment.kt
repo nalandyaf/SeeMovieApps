@@ -24,6 +24,8 @@ import androidx.annotation.LayoutRes
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.fragment.app.Fragment
+import com.base.mvvm.R
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import dagger.android.support.AndroidSupportInjection
 
 abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel<*, *>?> : Fragment() {
@@ -34,8 +36,10 @@ abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel<*, *>?> : Fr
         private set
     private var mViewModel: V? = null
     abstract val bindingVariable: Int
+
     @get:LayoutRes
     abstract val layoutId: Int
+    protected lateinit var dialog: SweetAlertDialog
 
     abstract val viewModel: V
     override fun onAttach(context: Context) {
@@ -79,5 +83,28 @@ abstract class BaseFragment<T : ViewDataBinding?, V : BaseViewModel<*, *>?> : Fr
     interface Callback {
         fun onFragmentAttached()
         fun onFragmentDetached(tag: String?)
+    }
+
+    fun createLoading() {
+        dialog = SweetAlertDialog(activity, SweetAlertDialog.PROGRESS_TYPE)
+        loading(dialog)
+    }
+
+    fun dismissLoading(){
+        dialog.dismissWithAnimation()
+    }
+
+    fun loading(dialog: SweetAlertDialog): SweetAlertDialog {
+        dialog.progressHelper.barColor = R.color.colorPrimary
+        dialog.progressHelper.rimColor = R.color.colorAccent
+        dialog.titleText = "Loading"
+        dialog.setCancelable(false)
+        if (!dialog.isShowing) {
+            dialog.show()
+        } else {
+            dialog.dismissWithAnimation()
+            //dialog.show()
+        }
+        return dialog
     }
 }

@@ -5,4 +5,5 @@ data class Movies(
         var backdropPath: String? = null,
         var releaseDate: String? = null,
         var voteAverage: Double? = null,
+        var posterPath: String? = null,
         var voteCount: Int? = null) : BaseObject()

@@ -6,6 +6,7 @@ import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
 import com.base.mvvm.utils.AndroidUtils
 import com.base.mvvm.utils.SchedulerProvider
+import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 

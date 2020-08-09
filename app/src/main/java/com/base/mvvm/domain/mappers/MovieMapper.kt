@@ -10,7 +10,7 @@ class MovieMapper : BaseMapper<MovieEntity?, Movies?>() {
     }
 
     override fun createEntity(): MovieEntity? {
-       return MovieEntity()
+        return MovieEntity()
     }
 
     @Throws(MapperException::class)
@@ -22,19 +22,19 @@ class MovieMapper : BaseMapper<MovieEntity?, Movies?>() {
             `object`?.releaseDate = entity!!.releaseDate
             `object`?.voteAverage = entity!!.voteAverage
             `object`?.voteCount = entity!!.voteCount
+            `object`?.posterPath = entity!!.posterPath
             return `object`
 
-        } catch (e: Exception){
+        } catch (e: Exception) {
             throw MapperException(e.message)
         }
     }
 
     @Throws(MapperException::class)
     override fun defineEntity(entity: MovieEntity?): MovieEntity? {
-        try{
+        try {
             return entity
-        }
-        catch (e: Exception){
+        } catch (e: Exception) {
             throw MapperException(e.message)
         }
     }

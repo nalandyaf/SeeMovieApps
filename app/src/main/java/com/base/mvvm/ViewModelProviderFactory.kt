@@ -41,7 +41,7 @@ class ViewModelProviderFactory @Inject constructor(private val schedulerProvider
                 return HomeViewModel(null, schedulerProvider) as T
             }
             modelClass.isAssignableFrom(MoviesViewModel::class.java) -> {
-                return MoviesViewModel(null, schedulerProvider) as T
+                return MoviesViewModel(moviesUsecases, schedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }
