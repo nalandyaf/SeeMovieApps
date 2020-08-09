@@ -4,12 +4,10 @@ import com.base.mvvm.data.remote.MovieRepository
 import com.base.mvvm.domain.entities.BasePaginationEntity
 import com.base.mvvm.domain.entities.Genre
 import com.base.mvvm.domain.entities.MovieEntity
-import com.base.mvvm.domain.entities.response.BaseResponsePagination
-import com.base.mvvm.domain.entities.response.MoviesList
-import com.base.mvvm.domain.entities.response.ResponseGenres
-import com.base.mvvm.domain.entities.response.ResponseReview
+import com.base.mvvm.domain.entities.response.*
 import com.base.mvvm.domain.mappers.MovieMapper
 import com.base.mvvm.domain.models.MovieReview
+import com.base.mvvm.domain.models.MovieVideos
 import io.reactivex.Single
 
 class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
@@ -19,7 +17,7 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
             val moviesList = MoviesList()
             val movies = mapper.convertToObjectList(responses.results!!)
             moviesList.movies = movies
-            moviesList.page = responses.page
+            moviesList.page = responses.totalPages
             return@flatMap Single.just(moviesList)
         }
 
@@ -38,6 +36,14 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
             responseReview.movieReview = responses.results
             responseReview.totalPages = responses.totalPages
             return@flatMap Single.just(responseReview)
+        }
+    }
+
+    override fun getMovieVideos(movieId: Int): Single<ResponseVideo> {
+        return repository.getVideos(movieId).flatMap { response: BaseResponse<MovieVideos> ->
+            val responseVideo = ResponseVideo()
+            responseVideo.movieVideos = response.results
+            return@flatMap Single.just(responseVideo)
         }
     }
 }

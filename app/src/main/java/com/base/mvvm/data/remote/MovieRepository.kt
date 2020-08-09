@@ -4,9 +4,11 @@ import com.base.mvvm.BuildConfig
 import com.base.mvvm.domain.entities.BasePaginationEntity
 import com.base.mvvm.domain.entities.BaseResponseEntity
 import com.base.mvvm.domain.entities.MovieEntity
+import com.base.mvvm.domain.entities.response.BaseResponse
 import com.base.mvvm.domain.entities.response.BaseResponsePagination
 import com.base.mvvm.domain.entities.response.ResponseGenres
 import com.base.mvvm.domain.models.MovieReview
+import com.base.mvvm.domain.models.MovieVideos
 import io.reactivex.Single
 
 class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
@@ -30,6 +32,8 @@ class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
         return remoteAPI.getGenre(BuildConfig.API_KEY, BuildConfig.LANGUAGE)
     }
 
-//    fun getVideos(): Single<>
+    fun getVideos(movieId: Int): Single<BaseResponse<MovieVideos>> {
+        return remoteAPI.getVideo(movieId, BuildConfig.API_KEY, BuildConfig.LANGUAGE)
+    }
 
 }
