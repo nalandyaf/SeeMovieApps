@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <import type="com.base.mvvm.ui.base.BaseViewModel"/>
+        <variable
+            name="viewModel"
+            type="com.base.mvvm.ui.movies.seeMore.adapter.SeeMoreItemViewModel" />
+    </data>
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="300dp">
+
+        <ImageView
+            android:id="@+id/image"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:scaleType="centerCrop"
+            android:src="@drawable/example_poster" />
+
+    </FrameLayout>
+
+</layout>

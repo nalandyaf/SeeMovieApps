@@ -1,5 +1,6 @@
 package com.base.mvvm.ui.movies
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.Gravity
 import android.view.View
@@ -9,6 +10,7 @@ import com.base.mvvm.R
 import com.base.mvvm.ViewModelProviderFactory
 import com.base.mvvm.databinding.FragmentMoviesBinding
 import com.base.mvvm.ui.base.BaseFragment
+import com.base.mvvm.ui.movies.seeMore.SeeMoreActivity
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import javax.inject.Inject
 
@@ -57,6 +59,24 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(), M
         mBinding!!.topRatedList.hideShimmerAdapter()
         mBinding!!.upcomingList.hideShimmerAdapter()
         dismissLoading()
+    }
+
+    override fun seeMorePopular() {
+        val intent = Intent(context, SeeMoreActivity::class.java)
+        intent.putExtra("data", SeeMoreActivity.TYPE_POPULAR)
+        context?.startActivity(intent)
+    }
+
+    override fun seeMoreTopRated() {
+        val intent = Intent(context, SeeMoreActivity::class.java)
+        intent.putExtra("data", SeeMoreActivity.TYPE_TOP_RATED)
+        context?.startActivity(intent)
+    }
+
+    override fun seeMoreUpcoming() {
+        val intent = Intent(context, SeeMoreActivity::class.java)
+        intent.putExtra("data", SeeMoreActivity.TYPE_UPCOMING)
+        context?.startActivity(intent)
     }
 
     override fun handleError(throwable: Throwable?) {

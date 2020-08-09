@@ -42,7 +42,7 @@ abstract class BaseAdapter<M>(dataList: ArrayList<M>) : RecyclerView.Adapter<Rec
 
     fun addItems(datas: List<M>) {
         listData.addAll(datas)
-        notifyItemRangeInserted(0, datas.size)
+        notifyDataSetChanged()
     }
 
     fun addItem(data: M) {

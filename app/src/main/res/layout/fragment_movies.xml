@@ -48,6 +48,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:padding="@dimen/padding_slarge"
+                        android:onClick="@{() -> viewModel.seeMorePopular()}"
                         android:text="See More"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/text_s" />
@@ -93,6 +94,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:padding="@dimen/padding_slarge"
+                        android:onClick="@{() -> viewModel.seeMoreTopRated()}"
                         android:text="See More"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/text_s" />
@@ -139,6 +141,7 @@
                         android:layout_height="wrap_content"
                         android:background="?attr/selectableItemBackground"
                         android:padding="@dimen/padding_slarge"
+                        android:onClick="@{() -> viewModel.seeMoreUpcoming()}"
                         android:text="See More"
                         android:textColor="@color/colorPrimary"
                         android:textSize="@dimen/text_s" />

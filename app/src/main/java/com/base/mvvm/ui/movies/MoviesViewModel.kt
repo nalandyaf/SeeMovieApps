@@ -100,5 +100,17 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
         return adapterPopular
     }
 
+    fun seeMorePopular(){
+        navigator?.seeMorePopular()
+    }
+
+    fun seeMoreTopRated(){
+        navigator?.seeMoreTopRated()
+    }
+
+    fun seeMoreUpcoming(){
+        navigator?.seeMoreUpcoming()
+    }
+
 
 }
