@@ -2,12 +2,15 @@ package com.base.mvvm.domain.usecases.movies
 
 import com.base.mvvm.data.remote.MovieRepository
 import com.base.mvvm.domain.entities.BasePaginationEntity
+import com.base.mvvm.domain.entities.Genre
 import com.base.mvvm.domain.entities.MovieEntity
 import com.base.mvvm.domain.entities.response.MoviesList
+import com.base.mvvm.domain.entities.response.ResponseGenres
 import com.base.mvvm.domain.mappers.MovieMapper
 import io.reactivex.Single
 
-class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository) : IMoviesUsecases(mapper!!,repository) {
+class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
+    : IMoviesUsecases(mapper!!, repository) {
     override fun getDiscoverMovies(page: Int): Single<MoviesList> {
         return repository.getMovie(page).flatMap { responses: BasePaginationEntity<MovieEntity> ->
             val moviesList = MoviesList()
@@ -16,5 +19,12 @@ class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository) : IMovies
             return@flatMap Single.just(moviesList)
         }
 
+    }
+
+    override fun getGenres(): Single<List<Genre>> {
+        return repository.getGenres().flatMap { response: ResponseGenres ->
+            val genreList = response.genres
+            return@flatMap Single.just(genreList)
+        }
     }
 }

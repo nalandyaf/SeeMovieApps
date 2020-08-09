@@ -26,5 +26,11 @@ open class MovieEntity : BaseObjectEntity() {
     var overview: String? = null
     @SerializedName("release_date")
     var releaseDate: String? = null
+    var genres: List<Genre>? = null
 
 }
+
+open class Genre(
+        val id: Int,
+        val name: String
+)

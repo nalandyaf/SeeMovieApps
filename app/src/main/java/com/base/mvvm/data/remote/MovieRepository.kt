@@ -4,6 +4,7 @@ import com.base.mvvm.BuildConfig
 import com.base.mvvm.domain.entities.BasePaginationEntity
 import com.base.mvvm.domain.entities.BaseResponseEntity
 import com.base.mvvm.domain.entities.MovieEntity
+import com.base.mvvm.domain.entities.response.ResponseGenres
 import io.reactivex.Single
 
 class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
@@ -17,6 +18,10 @@ class MovieRepository : BaseRepository<BaseResponseEntity<MovieEntity>>() {
 
     fun getMovie(page: Int): Single<BasePaginationEntity<MovieEntity>> {
         return remoteAPI.getMovies(BuildConfig.API_KEY, BuildConfig.LANGUAGE, "popularity.desc", page)
+    }
+
+    fun getGenres(): Single<ResponseGenres> {
+        return remoteAPI.getGenre(BuildConfig.API_KEY, BuildConfig.LANGUAGE)
     }
 
 }
