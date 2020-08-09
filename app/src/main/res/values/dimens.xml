@@ -77,5 +77,8 @@
     <dimen name="font_size_regular">18sp</dimen>
     <dimen name="font_size_big">22sp</dimen>
     <dimen name="font_size_button">16sp</dimen>
+    <dimen name="padding_slarge">20dp</dimen>
+    <dimen name="text_s">12sp</dimen>
+    <dimen name="margin_med">14dp</dimen>
 
 </resources>

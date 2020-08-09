@@ -116,8 +116,13 @@ dependencies {
     testImplementation "org.mockito:mockito-core:$rootProject.mockitoVersion"
 
     //lombok
+    //noinspection AnnotationProcessorOnCompilePath
     implementation "org.projectlombok:lombok:$rootProject.lombokVersion"
     annotationProcessor "org.projectlombok:lombok:$rootProject.lombokVersion"
+
+    //shimmer
+    implementation "com.github.mike14u:shimmer-recyclerview-x:1.0.3"
+
 
 }
 repositories {
