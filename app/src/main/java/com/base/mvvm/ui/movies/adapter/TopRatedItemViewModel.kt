@@ -17,6 +17,7 @@ class TopRatedItemViewModel(itemData: Movies?,
     var voteAverage = ObservableField<String>()
 
     var data: Movies? = itemData
+    var imageUrl = ObservableField<String>()
 
     init {
         year.set(data?.releaseDate!!.substring(0, 4))
@@ -25,7 +26,7 @@ class TopRatedItemViewModel(itemData: Movies?,
         val ratingData = ((data?.voteAverage?.times(5))?.div(10))?.toFloat()
         rating.set(ratingData)
         voteAverage.set(data?.voteAverage.toString())
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + data?.backdropPath).into(binding!!.image)
+        imageUrl.set("https://image.tmdb.org/t/p/w500" + data?.backdropPath)
 
     }
 

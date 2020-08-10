@@ -1,5 +1,6 @@
 package com.base.mvvm.ui.movies.detailMovie.adapter
 
+import androidx.databinding.ObservableField
 import com.base.mvvm.databinding.AdapterTrailerBinding
 import com.base.mvvm.domain.models.MovieVideos
 import com.squareup.picasso.Picasso
@@ -10,10 +11,10 @@ class ItemTrailerViewModel(itemData: MovieVideos?,
                            var binding: AdapterTrailerBinding) : Observable() {
 
     var data: MovieVideos? = itemData
+    var imageUrl = ObservableField<String>()
 
     init {
-        Picasso.get().load("https://img.youtube.com/vi/${data?.key}/hqdefault.jpg")
-                .into(binding.image)
+        imageUrl.set("https://img.youtube.com/vi/${data?.key}/hqdefault.jpg")
     }
 
 

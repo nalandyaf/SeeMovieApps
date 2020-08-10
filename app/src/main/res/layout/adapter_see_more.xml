@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout xmlns:android="http://schemas.android.com/apk/res/android">
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -20,7 +21,7 @@
             android:layout_height="match_parent"
             android:onClick="@{() -> viewModel.toDetail()}"
             android:scaleType="centerCrop"
-            android:src="@drawable/example_poster" />
+            app:imageUrl="@{viewModel.imageUrl}" />
 
     </FrameLayout>
 

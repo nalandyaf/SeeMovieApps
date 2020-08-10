@@ -10,10 +10,11 @@ class UpcomingItemViewModel(itemData: Movies?, var actionDetail: (Movies) -> Uni
     var releaseDate = ObservableField<String>()
 
     var data: Movies? = itemData
+    var imageUrl = ObservableField<String>()
 
     init {
         releaseDate.set(data?.releaseDate)
-        Picasso.get().load("https://image.tmdb.org/t/p/w500" + data?.posterPath).into(binding.image)
+        imageUrl.set("https://image.tmdb.org/t/p/w500" + data?.posterPath)
     }
 
     fun toDetail() {

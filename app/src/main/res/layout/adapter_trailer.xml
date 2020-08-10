@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<layout>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -20,9 +20,10 @@
             android:id="@+id/image"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:scaleType="centerCrop"
             android:onClick="@{() -> viewModel.onSelected()}"
-            android:src="@drawable/example_poster" />
+            android:scaleType="centerCrop"
+            android:src="@drawable/example_poster"
+            app:imageUrl="@{viewModel.imageUrl}" />
 
         <ImageView
             android:layout_width="match_parent"
