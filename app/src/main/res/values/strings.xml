@@ -29,5 +29,11 @@
     <string name="movies">Movies</string>
     <string name="genre">Genre</string>
 
+    <string-array name="example">
+        <item>Corona</item>
+        <item>Corona</item>
+        <item>Corona</item>
+    </string-array>
+
 
 </resources>

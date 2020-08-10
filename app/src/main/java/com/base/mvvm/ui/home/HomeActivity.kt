@@ -13,6 +13,7 @@ import com.base.mvvm.ViewModelProviderFactory
 import com.base.mvvm.databinding.ActivityHomeBinding
 import com.base.mvvm.domain.models.ContentTab
 import com.base.mvvm.ui.base.BaseActivity
+import com.base.mvvm.ui.genre.GenreFragment
 import com.base.mvvm.ui.movies.MoviesFragment
 import com.google.android.material.tabs.TabLayout
 import javax.inject.Inject
@@ -67,7 +68,7 @@ class HomeActivity : BaseActivity<ActivityHomeBinding, HomeViewModel>(), HomeNav
     private fun listTab(): ArrayList<ContentTab> {
         contentTab = java.util.ArrayList()
         contentTab!!.add(makeTab(MoviesFragment(), "Movies", R.drawable.icon_movies))
-        contentTab!!.add(makeTab(MoviesFragment(), "Genre", R.drawable.icon_genre))
+        contentTab!!.add(makeTab(GenreFragment(), "Genre", R.drawable.icon_genre))
         return contentTab!!
     }
 

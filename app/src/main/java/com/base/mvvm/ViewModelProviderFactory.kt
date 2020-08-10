@@ -14,6 +14,7 @@ import com.base.mvvm.domain.usecases.movies.IMoviesUsecases
 import com.base.mvvm.domain.usecases.movies.MovieUsecases
 import com.base.mvvm.domain.usecases.user.IUserUsecases
 import com.base.mvvm.domain.usecases.user.UserUsecases
+import com.base.mvvm.ui.genre.GenreViewModel
 import com.base.mvvm.ui.home.HomeViewModel
 import com.base.mvvm.ui.login.LoginViewModel
 import com.base.mvvm.ui.movies.MoviesViewModel
@@ -50,6 +51,9 @@ class ViewModelProviderFactory @Inject constructor(private val schedulerProvider
             }
             modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> {
                 return DetailMovieViewModel(detailMovieUsecases, schedulerProvider) as T
+            }
+            modelClass.isAssignableFrom(GenreViewModel::class.java) ->{
+                return GenreViewModel(moviesUsecases,schedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

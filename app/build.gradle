@@ -129,6 +129,7 @@ dependencies {
     implementation 'com.github.PierfrancescoSoffritti:AndroidYouTubePlayer:4.1.5'
     implementation 'com.android.support:multidex:1.0.3'
     implementation 'de.hdodenhof:circleimageview:3.1.0'
+    implementation 'com.github.chivorns.androidx:smartmaterialspinner:1.2.1'
 
 
 }

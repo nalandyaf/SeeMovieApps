@@ -13,7 +13,7 @@ import io.reactivex.Single
 abstract class IMoviesUsecases(mapper: MovieMapper, movieRepository: MovieRepository?)
     : BaseUsecase<MovieMapper, MovieRepository>(mapper, movieRepository!!) {
     @Throws(MapperException::class)
-    abstract fun getDiscoverMovies(page: Int): Single<MoviesList>
+    abstract fun getDiscoverMovies(page: Int, genreId: Int): Single<MoviesList>
 
     @Throws(MapperException::class)
     abstract fun getPopularMovies(page: Int): Single<MoviesList>

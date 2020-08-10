@@ -42,6 +42,7 @@ interface RemoteAPI {
     fun getMovies(@Query("api_key") apiKey: String,
                   @Query("language") language: String,
                   @Query("sort_by") sortBy: String,
+                  @Query("with_genres") genreId: String,
                   @Query("page") page: Int): Single<BasePaginationEntity<MovieEntity>>
 
     @GET("movie/popular")
@@ -51,14 +52,13 @@ interface RemoteAPI {
 
     @GET("movie/top_rated")
     fun getTopRatedMovies(@Query("api_key") apiKey: String,
-                         @Query("language") language: String,
-                         @Query("page") page: Int): Single<BasePaginationEntity<MovieEntity>>
+                          @Query("language") language: String,
+                          @Query("page") page: Int): Single<BasePaginationEntity<MovieEntity>>
 
     @GET("movie/upcoming")
     fun getUpcoming(@Query("api_key") apiKey: String,
-                         @Query("language") language: String,
-                         @Query("page") page: Int): Single<BasePaginationEntity<MovieEntity>>
-
+                    @Query("language") language: String,
+                    @Query("page") page: Int): Single<BasePaginationEntity<MovieEntity>>
 
 
     @GET("genre/movie/list")

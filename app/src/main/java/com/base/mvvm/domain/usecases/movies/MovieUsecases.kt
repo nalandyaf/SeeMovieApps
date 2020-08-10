@@ -12,8 +12,8 @@ import io.reactivex.Single
 
 class MovieUsecases(mapper: MovieMapper?, repository: MovieRepository)
     : IMoviesUsecases(mapper!!, repository) {
-    override fun getDiscoverMovies(page: Int): Single<MoviesList> {
-        return repository.getMovie(page).flatMap { responses: BasePaginationEntity<MovieEntity> ->
+    override fun getDiscoverMovies(page: Int,genreId:Int): Single<MoviesList> {
+        return repository.getMovie(page,genreId).flatMap { responses: BasePaginationEntity<MovieEntity> ->
             val moviesList = MoviesList()
             val movies = mapper.convertToObjectList(responses.results!!)
             moviesList.movies = movies
