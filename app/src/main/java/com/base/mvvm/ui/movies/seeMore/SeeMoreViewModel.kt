@@ -1,14 +1,15 @@
 package com.base.mvvm.ui.movies.seeMore
 
+import androidx.lifecycle.viewModelScope
 import com.base.mvvm.domain.entities.response.MoviesList
-import com.base.mvvm.domain.exceptions.MapperException
 import com.base.mvvm.domain.models.Movies
 import com.base.mvvm.domain.usecases.movies.IMoviesUsecases
 import com.base.mvvm.ui.base.BaseViewModel
 import com.base.mvvm.ui.movies.seeMore.adapter.SeeMoreAdapter
 import com.base.mvvm.utils.SchedulerProvider
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.schedulers.Schedulers
+import io.reactivex.Single
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.supervisorScope
 
 @Suppress("UNCHECKED_CAST")
 class SeeMoreViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: SchedulerProvider)
@@ -18,6 +19,8 @@ class SeeMoreViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedu
     var totalPages: Int? = 0
 
     private lateinit var adapterSeeMoreAdapter: SeeMoreAdapter
+
+    var dataMovies: Single<MoviesList>? = null
 
     override fun defineLayout() {
 
@@ -39,38 +42,50 @@ class SeeMoreViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedu
     }
 
     private fun getDataUpcoming(page: Int?) {
-        try {
-            compositeDisposable.add(baseUsecase!!.getUpcomingMovies(page!!)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::onSuccessGetData, this::onError))
-        } catch (e: MapperException) {
-            e.printStackTrace()
-            onError(e)
+        viewModelScope.launch {
+            supervisorScope {
+                try {
+                    val responseMoviesList = baseUsecase?.getUpcomingMovies(page!!)
+                    dataMovies = responseMoviesList
+                    adapterSeeMoreAdapter.addItems(dataMovies?.blockingGet()?.movies as List<Movies>)
+                    totalPages = dataMovies?.blockingGet()?.page
+                } catch (e: java.lang.Exception) {
+                    //adapter no updae
+                }
+                if (adapterSeeMoreAdapter.listData.size > 0) navigator?.hideLoad()
+            }
         }
     }
 
     private fun getDataTopRated(page: Int?) {
-        try {
-            compositeDisposable.add(baseUsecase!!.getTopRatedMovies(page!!)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::onSuccessGetData, this::onError))
-        } catch (e: MapperException) {
-            e.printStackTrace()
-            onError(e)
+        viewModelScope.launch {
+            supervisorScope {
+                try {
+                    val responseMoviesList = baseUsecase?.getTopRatedMovies(page!!)
+                    dataMovies = responseMoviesList
+                    adapterSeeMoreAdapter.addItems(dataMovies?.blockingGet()?.movies as List<Movies>)
+                    totalPages = dataMovies?.blockingGet()?.page
+                } catch (e: java.lang.Exception) {
+                    //adapter no updae
+                }
+                if (adapterSeeMoreAdapter.listData.size > 0) navigator?.hideLoad()
+            }
         }
     }
 
     private fun getDataPopular(page: Int?) {
-        try {
-            compositeDisposable.add(baseUsecase!!.getPopularMovies(page!!)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::onSuccessGetData, this::onError))
-        } catch (e: MapperException) {
-            e.printStackTrace()
-            onError(e)
+        viewModelScope.launch {
+            supervisorScope {
+                try {
+                    val responseMoviesList = baseUsecase?.getPopularMovies(page!!)
+                    dataMovies = responseMoviesList
+                    adapterSeeMoreAdapter.addItems(dataMovies?.blockingGet()?.movies as List<Movies>)
+                    totalPages = dataMovies?.blockingGet()?.page
+                } catch (e: java.lang.Exception) {
+                    //adapter no updae
+                }
+                if (adapterSeeMoreAdapter.listData.size > 0) navigator?.hideLoad()
+            }
         }
     }
 

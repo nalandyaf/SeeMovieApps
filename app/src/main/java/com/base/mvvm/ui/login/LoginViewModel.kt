@@ -34,16 +34,7 @@ class LoginViewModel(baseUsecase: IMoviesUsecases, schedulerProvider: SchedulerP
     }
 
     fun login() {
-        isLoading(true)
-        try {
-            compositeDisposable.add(baseUsecase!!.getUpcomingMovies(1)
-                    .subscribeOn(Schedulers.io())
-                    .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(this::onSuccess, this::onError))
-        } catch (e: MapperException) {
-            e.printStackTrace()
-            onError(e)
-        }
+
     }
 
     fun onSuccess(moviesList: MoviesList) {
