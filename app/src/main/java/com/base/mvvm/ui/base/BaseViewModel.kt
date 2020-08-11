@@ -1,12 +1,12 @@
 package com.base.mvvm.ui.base
 
-import android.view.View
+import android.graphics.drawable.Drawable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
+import com.base.mvvm.R
 import com.base.mvvm.utils.AndroidUtils
 import com.base.mvvm.utils.SchedulerProvider
-import com.ontbee.legacyforks.cn.pedant.SweetAlert.SweetAlertDialog
 import io.reactivex.disposables.CompositeDisposable
 import java.lang.ref.WeakReference
 
@@ -18,11 +18,16 @@ abstract class BaseViewModel<U, N : BaseNavigator?>(baseUsecase: U, schedulerPro
     val schedulerProvider: SchedulerProvider
     var appBarTitle = ObservableField<String>()
     var showProgressBar = ObservableBoolean()
+    var showEmpty = ObservableBoolean()
     var showAlertDialog = ObservableBoolean()
     var progressBarMessage = ObservableField<String?>()
 
     var positiveButton = ObservableField<String>()
     var negativeButton = ObservableField<String>()
+    var showLayoutError = ObservableBoolean()
+
+    var imageEmpty = ObservableField<Drawable>(AndroidUtils.getDrawable(R.drawable.ic_empty_state_activity))
+
     abstract fun defineLayout()
     override fun onCleared() {
         compositeDisposable.dispose()

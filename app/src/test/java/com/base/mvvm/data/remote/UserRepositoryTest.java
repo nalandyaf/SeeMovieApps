@@ -1,5 +1,6 @@
 package com.base.mvvm.data.remote;
 
+import com.base.mvvm.domain.entities.UserEntity;
 import com.base.mvvm.domain.entities.requests.LoginRequest;
 import com.base.mvvm.domain.entities.response.LoginResponse;
 
@@ -31,7 +32,6 @@ public class UserRepositoryTest {
 
     @Before
     public void setUp() throws Exception {
-        vEntity = new UserEntity();
         vEntity.setUsername("username");
         vEntity.setPassword("password");
     }

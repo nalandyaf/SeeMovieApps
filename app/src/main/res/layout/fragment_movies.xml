@@ -11,161 +11,170 @@
             type="com.base.mvvm.ui.movies.MoviesViewModel" />
     </data>
 
-    <ScrollView
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/color_home"
-        android:fillViewport="true">
+        android:layout_height="match_parent">
 
-        <LinearLayout
+        <ScrollView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:background="@color/color_home"
-            android:orientation="vertical">
+            android:fillViewport="true">
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
+                android:layout_height="match_parent"
+                android:background="@color/color_home"
                 android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/padding_slarge"
-                        android:text="POPULAR MOVIE"
-                        android:textColor="@android:color/white" />
+                        android:orientation="horizontal">
 
-                    <TextView
-                        android:id="@+id/morePopular"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="POPULAR MOVIE"
+                            android:textColor="@android:color/white" />
+
+                        <TextView
+                            android:id="@+id/morePopular"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="@{() -> viewModel.seeMorePopular()}"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="See More"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_s" />
+                    </LinearLayout>
+
+                    <com.base.mvvm.common.SnappingRecyclerView
+                        android:id="@+id/popularMovieList"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="@dimen/padding_slarge"
-                        android:onClick="@{() -> viewModel.seeMorePopular()}"
-                        android:text="See More"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_s" />
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:setAdapter="@{viewModel.getAdapterPopular()}"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="10"
+                        app:shimmer_demo_layout="@layout/adapter_movie_popular"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal" />
+
                 </LinearLayout>
-
-                <com.base.mvvm.common.SnappingRecyclerView
-                    android:id="@+id/popularMovieList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:shimmer_demo_angle="20"
-                    app:setAdapter="@{viewModel.getAdapterPopular()}"
-                    app:shimmer_demo_child_count="10"
-                    app:shimmer_demo_layout="@layout/adapter_movie_popular"
-                    app:shimmer_demo_layout_manager_type="linear_horizontal" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/padding_slarge"
-                        android:text="TOP RATED"
-                        android:textColor="@android:color/white" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="TOP RATED"
+                            android:textColor="@android:color/white" />
 
 
-                    <TextView
-                        android:id="@+id/moreTop"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/moreTop"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="@{() -> viewModel.seeMoreTopRated()}"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="See More"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_s" />
+                    </LinearLayout>
+
+                    <com.mikelau.views.shimmer.ShimmerRecyclerViewX
+                        android:id="@+id/topRatedList"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="@dimen/padding_slarge"
-                        android:onClick="@{() -> viewModel.seeMoreTopRated()}"
-                        android:text="See More"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_s" />
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:setAdapter="@{viewModel.getAdapterTopRated()}"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="3"
+                        app:shimmer_demo_layout="@layout/adapter_movie_top_rated"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal" />
+
                 </LinearLayout>
-
-                <com.mikelau.views.shimmer.ShimmerRecyclerViewX
-                    android:id="@+id/topRatedList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:setAdapter="@{viewModel.getAdapterTopRated()}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:shimmer_demo_angle="20"
-                    app:shimmer_demo_child_count="3"
-                    app:shimmer_demo_layout="@layout/adapter_movie_top_rated"
-                    app:shimmer_demo_layout_manager_type="linear_horizontal" />
-
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/margin_med"
-                android:layout_weight="1"
-                android:orientation="vertical">
 
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="horizontal">
+                    android:layout_marginBottom="@dimen/margin_med"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <TextView
+                    <LinearLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:layout_weight="1"
-                        android:padding="@dimen/padding_slarge"
-                        android:text="UPCOMING"
-                        android:textColor="@android:color/white" />
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="UPCOMING"
+                            android:textColor="@android:color/white" />
 
 
-                    <TextView
-                        android:id="@+id/moreUpcoming"
-                        android:layout_width="wrap_content"
+                        <TextView
+                            android:id="@+id/moreUpcoming"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:background="?attr/selectableItemBackground"
+                            android:onClick="@{() -> viewModel.seeMoreUpcoming()}"
+                            android:padding="@dimen/padding_slarge"
+                            android:text="See More"
+                            android:textColor="@color/colorPrimary"
+                            android:textSize="@dimen/text_s" />
+                    </LinearLayout>
+
+                    <com.mikelau.views.shimmer.ShimmerRecyclerViewX
+                        android:id="@+id/upcomingList"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="?attr/selectableItemBackground"
-                        android:padding="@dimen/padding_slarge"
-                        android:onClick="@{() -> viewModel.seeMoreUpcoming()}"
-                        android:text="See More"
-                        android:textColor="@color/colorPrimary"
-                        android:textSize="@dimen/text_s" />
+                        android:orientation="horizontal"
+                        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                        app:setAdapter="@{viewModel.getAdapterUpcoming()}"
+                        app:shimmer_demo_angle="20"
+                        app:shimmer_demo_child_count="5"
+                        app:shimmer_demo_layout="@layout/adapter_movie_upcoming"
+                        app:shimmer_demo_layout_manager_type="linear_horizontal" />
+
                 </LinearLayout>
 
-                <com.mikelau.views.shimmer.ShimmerRecyclerViewX
-                    android:id="@+id/upcomingList"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:orientation="horizontal"
-                    app:setAdapter="@{viewModel.getAdapterUpcoming()}"
-                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:shimmer_demo_angle="20"
-                    app:shimmer_demo_child_count="5"
-                    app:shimmer_demo_layout="@layout/adapter_movie_upcoming"
-                    app:shimmer_demo_layout_manager_type="linear_horizontal" />
 
             </LinearLayout>
 
 
-        </LinearLayout>
+        </ScrollView>
 
+        <include layout="@layout/layout_progress" />
+        <include layout="@layout/layout_empty"/>
 
-    </ScrollView>
+    </RelativeLayout>
 
 
 </layout>
