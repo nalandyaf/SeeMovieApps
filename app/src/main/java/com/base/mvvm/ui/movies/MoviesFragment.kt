@@ -77,21 +77,9 @@ class MoviesFragment : BaseFragment<FragmentMoviesBinding, MoviesViewModel>(), M
         dismissLoading()
     }
 
-    override fun seeMorePopular() {
+    override fun seeMore(type: Int) {
         val intent = Intent(context, SeeMoreActivity::class.java)
-        intent.putExtra("data", SeeMoreActivity.TYPE_POPULAR)
-        context?.startActivity(intent)
-    }
-
-    override fun seeMoreTopRated() {
-        val intent = Intent(context, SeeMoreActivity::class.java)
-        intent.putExtra("data", SeeMoreActivity.TYPE_TOP_RATED)
-        context?.startActivity(intent)
-    }
-
-    override fun seeMoreUpcoming() {
-        val intent = Intent(context, SeeMoreActivity::class.java)
-        intent.putExtra("data", SeeMoreActivity.TYPE_UPCOMING)
+        intent.putExtra("data", type)
         context?.startActivity(intent)
     }
 

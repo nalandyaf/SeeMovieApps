@@ -10,6 +10,7 @@ import com.base.mvvm.ui.base.BaseViewModel
 import com.base.mvvm.ui.movies.adapter.AdapterPopular
 import com.base.mvvm.ui.movies.adapter.AdapterTopRated
 import com.base.mvvm.ui.movies.adapter.AdapterUpcoming
+import com.base.mvvm.ui.movies.seeMore.SeeMoreActivity
 import com.base.mvvm.utils.SchedulerProvider
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
@@ -92,15 +93,15 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
     }
 
     fun seeMorePopular() {
-        navigator?.seeMorePopular()
+        navigator?.seeMore(SeeMoreActivity.TYPE_POPULAR)
     }
 
     fun seeMoreTopRated() {
-        navigator?.seeMoreTopRated()
+        navigator?.seeMore(SeeMoreActivity.TYPE_TOP_RATED)
     }
 
     fun seeMoreUpcoming() {
-        navigator?.seeMoreUpcoming()
+        navigator?.seeMore(SeeMoreActivity.TYPE_UPCOMING)
     }
 
     fun toDetailMovie(movies: Movies) {
