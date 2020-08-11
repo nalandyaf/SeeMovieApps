@@ -1,10 +1,8 @@
 package com.base.mvvm.ui.base
 
-import android.graphics.drawable.Drawable
 import androidx.databinding.ObservableBoolean
 import androidx.databinding.ObservableField
 import androidx.lifecycle.ViewModel
-import com.base.mvvm.R
 import com.base.mvvm.utils.AndroidUtils
 import com.base.mvvm.utils.SchedulerProvider
 import io.reactivex.disposables.CompositeDisposable
@@ -25,8 +23,6 @@ abstract class BaseViewModel<U, N : BaseNavigator?>(baseUsecase: U, schedulerPro
     var positiveButton = ObservableField<String>()
     var negativeButton = ObservableField<String>()
     var showLayoutError = ObservableBoolean()
-
-    var imageEmpty = ObservableField<Drawable>(AndroidUtils.getDrawable(R.drawable.ic_empty_state_activity))
 
     abstract fun defineLayout()
     override fun onCleared() {

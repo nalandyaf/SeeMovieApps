@@ -42,40 +42,37 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
         viewModelScope.launch {
             isLoading(true)
             try {
-                supervisorScope {
-                    try {
-                        val dataPopular = async { baseUsecase?.getUpcomingMovies(1) }
-                        val arrayPopular = dataPopular.await()
-                        adapterPopular?.addItems(arrayPopular?.blockingGet()?.movies as List<Movies>)
-                    } catch (e: Exception) {
-                        //Do Nothing becasue adapter still empty
-                    }
-                    try {
-                        val dataTopRated = async { baseUsecase?.getTopRatedMovies(1) }
-                        val arrayToprated = dataTopRated.await()
-                        adapterTopRated?.addItems(arrayToprated?.blockingGet()?.movies as List<Movies>)
-                    } catch (e: Exception) {
-                        //Do Nothing becasue adapter still empty
-                    }
-                    try {
-                        val dataUpcoming = async { baseUsecase?.getUpcomingMovies(1) }
-                        val arrayUpcoming = dataUpcoming.await()
-                        adaperUpcoming?.addItems(arrayUpcoming?.blockingGet()?.movies as List<Movies>)
-                    } catch (e: Exception) {
-                        //Do Nothing becasue adapter still empty
-                    }
-                    if (adaperUpcoming?.listData?.size!! > 0
-                            && adapterPopular?.listData?.size!! >
-                            0 && adapterTopRated?.listData?.size!! > 0)
-                        Log.d("Scope", "fetchData: run after all data complete")
-                    mViewState.value = mViewState.value?.copy(loading = false, error = null, data = adapterPopular?.listData)
+                try {
+                    val dataPopular = async { baseUsecase?.getPopularMovies(1) }
+                    val arrayPopular = dataPopular.await()
+                    adapterPopular?.addItems(arrayPopular?.blockingGet()?.movies as List<Movies>)
+                } catch (e: Exception) {
+                    //Do Nothing becasue adapter still empty
                 }
+                try {
+                    val dataTopRated = async { baseUsecase?.getTopRatedMovies(1) }
+                    val arrayToprated = dataTopRated.await()
+                    adapterTopRated?.addItems(arrayToprated?.blockingGet()?.movies as List<Movies>)
+                } catch (e: Exception) {
+                    //Do Nothing becasue adapter still empty
+                }
+                try {
+                    val dataUpcoming = async { baseUsecase?.getUpcomingMovies(1) }
+                    val arrayUpcoming = dataUpcoming.await()
+                    adaperUpcoming?.addItems(arrayUpcoming?.blockingGet()?.movies as List<Movies>)
+                } catch (e: Exception) {
+                    //Do Nothing becasue adapter still empty
+                }
+                if (adaperUpcoming?.listData?.size!! > 0
+                        && adapterPopular?.listData?.size!! >
+                        0 && adapterTopRated?.listData?.size!! > 0)
+                mViewState.value = mViewState.value?.copy(loading = false, error = null, data = adapterPopular?.listData)
+
             } catch (e: Exception) {
                 mViewState.value = mViewState.value?.copy(loading = false, error = e, data = null)
             }
         }
     }
-
 
     fun getAdapterUpcoming(): AdapterUpcoming {
         adaperUpcoming = AdapterUpcoming(ArrayList(), ::toDetailMovie)
