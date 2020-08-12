@@ -1,6 +1,5 @@
 package com.base.mvvm.ui.movies
 
-import android.util.Log
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
@@ -14,7 +13,6 @@ import com.base.mvvm.ui.movies.seeMore.SeeMoreActivity
 import com.base.mvvm.utils.SchedulerProvider
 import kotlinx.coroutines.async
 import kotlinx.coroutines.launch
-import kotlinx.coroutines.supervisorScope
 
 @Suppress("UNCHECKED_CAST")
 class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: SchedulerProvider)
@@ -47,26 +45,23 @@ class MoviesViewModel(movieUsecases: IMoviesUsecases, schedulerProvider: Schedul
                     val arrayPopular = dataPopular.await()
                     adapterPopular?.addItems(arrayPopular?.blockingGet()?.movies as List<Movies>)
                 } catch (e: Exception) {
-                    //Do Nothing becasue adapter still empty
                 }
                 try {
                     val dataTopRated = async { baseUsecase?.getTopRatedMovies(1) }
                     val arrayToprated = dataTopRated.await()
                     adapterTopRated?.addItems(arrayToprated?.blockingGet()?.movies as List<Movies>)
                 } catch (e: Exception) {
-                    //Do Nothing becasue adapter still empty
                 }
                 try {
                     val dataUpcoming = async { baseUsecase?.getUpcomingMovies(1) }
                     val arrayUpcoming = dataUpcoming.await()
                     adaperUpcoming?.addItems(arrayUpcoming?.blockingGet()?.movies as List<Movies>)
                 } catch (e: Exception) {
-                    //Do Nothing becasue adapter still empty
                 }
                 if (adaperUpcoming?.listData?.size!! > 0
                         && adapterPopular?.listData?.size!! >
                         0 && adapterTopRated?.listData?.size!! > 0)
-                mViewState.value = mViewState.value?.copy(loading = false, error = null, data = adapterPopular?.listData)
+                    mViewState.value = mViewState.value?.copy(loading = false, error = null, data = adapterPopular?.listData)
 
             } catch (e: Exception) {
                 mViewState.value = mViewState.value?.copy(loading = false, error = e, data = null)
