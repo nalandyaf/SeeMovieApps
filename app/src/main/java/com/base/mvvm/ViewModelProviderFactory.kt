@@ -5,6 +5,7 @@ import androidx.lifecycle.ViewModelProvider.NewInstanceFactory
 import com.base.mvvm.data.remote.DetailMovieRepository
 import com.base.mvvm.data.remote.MovieRepository
 import com.base.mvvm.data.remote.UserRepository
+import com.base.mvvm.di.main.MainScope
 import com.base.mvvm.domain.mappers.DetailMovieMapper
 import com.base.mvvm.domain.mappers.MovieMapper
 import com.base.mvvm.domain.mappers.UserMapper
@@ -23,9 +24,8 @@ import com.base.mvvm.ui.movies.seeMore.SeeMoreViewModel
 import com.base.mvvm.ui.registration.RegistrationViewModel
 import com.base.mvvm.utils.SchedulerProvider
 import javax.inject.Inject
-import javax.inject.Singleton
 
-@Singleton
+@MainScope
 class ViewModelProviderFactory @Inject constructor(private val schedulerProvider: SchedulerProvider) : NewInstanceFactory() {
     private val userUsecases: IUserUsecases
     private val moviesUsecases: IMoviesUsecases
@@ -52,8 +52,8 @@ class ViewModelProviderFactory @Inject constructor(private val schedulerProvider
             modelClass.isAssignableFrom(DetailMovieViewModel::class.java) -> {
                 return DetailMovieViewModel(detailMovieUsecases, schedulerProvider) as T
             }
-            modelClass.isAssignableFrom(GenreViewModel::class.java) ->{
-                return GenreViewModel(moviesUsecases,schedulerProvider) as T
+            modelClass.isAssignableFrom(GenreViewModel::class.java) -> {
+                return GenreViewModel(moviesUsecases, schedulerProvider) as T
             }
             else -> throw IllegalArgumentException("Unknown ViewModel class: " + modelClass.name)
         }

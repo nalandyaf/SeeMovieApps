@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.base.mvvm.di.component.DaggerAppComponent
+import com.base.mvvm.di.main.MainScope
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasActivityInjector
@@ -15,7 +16,7 @@ import uk.co.chrisjenx.calligraphy.CalligraphyConfig
 import javax.inject.Inject
 import javax.inject.Singleton
 
-@Singleton
+@MainScope
 class App : MultiDexApplication(), HasActivityInjector,HasSupportFragmentInjector {
     @kotlin.jvm.JvmField
     @Inject
